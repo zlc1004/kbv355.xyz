@@ -5,3 +5,5 @@
 # koboshjoei
 
 [kobosh](https://kobosh.com)
+
+# black people
