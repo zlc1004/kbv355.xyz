@@ -4,7 +4,7 @@ scripthub
 
 # kobosh website:[kobosh](https://kobosh.com)
 
-# under construction (select the tiny box to agree
+# under construction (select the tiny box to agree)
 
 <div class="switch">
   <input id="toggle" type="checkbox" />
