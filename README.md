@@ -1,12 +1,10 @@
 # kbv355.xyz
+scripthub
 
-## kobosh
 
-# koboshjoei
+# kobosh website:[kobosh](https://kobosh.com)
 
-[kobosh](https://kobosh.com)
-
-# black people
+# under construction (select the tiny box to agree
 
 <div class="switch">
   <input id="toggle" type="checkbox" />
