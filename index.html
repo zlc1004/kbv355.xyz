@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blurry Background with Gradient Title</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- FontAwesome for the clipboard icon -->
     <style>
         * {
             margin: 0;
@@ -78,62 +77,18 @@
             width: 350px;
             height: 200px;
         }
-        .copy-btn-wrapper {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-        }
-        .copy-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            color: white;
-        }
-        .copy-btn:hover {
-            color: #ff416c;
+        .ui-box p {
+            user-select: text; /* Allows text selection for copying */
         }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const uiContainer = document.querySelector(".ui-container");
 
+            // Toggle the expansion on click
             document.querySelectorAll(".ui-box").forEach(box => {
-                const text = box.textContent.trim();
-
-                // Create a copy button wrapper
-                const copyBtnWrapper = document.createElement("div");
-                copyBtnWrapper.classList.add("copy-btn-wrapper");
-
-                // Create the clipboard icon (button)
-                const copyButton = document.createElement("button");
-                copyButton.classList.add("copy-btn");
-                copyButton.innerHTML = '<i class="fas fa-clipboard"></i>'; // FontAwesome clipboard icon
-
-                // Add the copy functionality
-                copyButton.addEventListener("click", function (event) {
-                    event.stopPropagation(); // Prevent triggering box click event
-                    // Attempt to copy the text of the box to the clipboard
-                    navigator.clipboard.writeText(box.textContent.trim())
-                        .then(() => {
-                            copyButton.innerHTML = '<i class="fas fa-clipboard-check"></i>'; // Clipboard checked icon after success
-                            setTimeout(() => {
-                                copyButton.innerHTML = '<i class="fas fa-clipboard"></i>'; // Reset to clipboard icon
-                            }, 2000);
-                        })
-                        .catch(err => {
-                            copyButton.innerHTML = '<i class="fas fa-clipboard"></i>'; // Reset icon on failure
-                            alert('Failed to copy text');
-                        });
-                });
-
-                // Append the copy button to the wrapper, and the wrapper to the box
-                copyBtnWrapper.appendChild(copyButton);
-                box.appendChild(copyBtnWrapper);
-
-                // Toggle box expansion on click (excluding the copy button)
                 box.addEventListener("click", function (event) {
-                    if (!event.target.closest(".copy-btn-wrapper")) { // Only expand if it's not the copy button
+                    if (!event.target.closest("p")) { // Only expand if clicked outside the text paragraph
                         this.classList.toggle("expanded");
                     }
                 });
@@ -153,9 +108,15 @@
     <div class="content">
         <h1>kobosh</h1>
         <div class="ui-container">
-            <div class="ui-box">https://kobosh.com</div>
-            <div class="ui-box">ig</div>
-            <div class="ui-box">devin gyat</div>
+            <div class="ui-box">
+                <p>https://kobosh.com</p>
+            </div>
+            <div class="ui-box">
+                <p>ig</p>
+            </div>
+            <div class="ui-box">
+                <p>devin gyat</p>
+            </div>
         </div>
     </div>
 </body>
