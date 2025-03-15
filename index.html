@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,9 +80,17 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const uiContainer = document.querySelector(".ui-container");
+
             document.querySelectorAll(".ui-box").forEach(box => {
                 box.addEventListener("click", function () {
                     this.classList.toggle("expanded");
+                });
+            });
+
+            uiContainer.addEventListener("mouseleave", function () {
+                document.querySelectorAll(".ui-box").forEach(box => {
+                    box.classList.remove("expanded");
                 });
             });
         });
