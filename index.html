@@ -14,6 +14,7 @@
         body {
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: black;
@@ -38,12 +39,64 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .ui-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .ui-box {
+            width: 250px;
+            height: 150px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .ui-box::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0);
+            transition: border-color 0.3s ease-in-out;
+        }
+        .ui-box:hover::after {
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        .ui-box.expanded {
+            width: 350px;
+            height: 200px;
+        }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".ui-box").forEach(box => {
+                box.addEventListener("click", function () {
+                    this.classList.toggle("expanded");
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="background"></div>
     <div class="content">
-        <h1>scripts?</h1>
+        <h1>kobosh</h1>
+        <div class="ui-container">
+            <div class="ui-box">https://kobosh.com</div>
+            <div class="ui-box">ig</div>
+            <div class="ui-box">devin gyat</div>
+        </div>
     </div>
 </body>
 </html>
