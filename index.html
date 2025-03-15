@@ -108,14 +108,18 @@
                 // Add the copy functionality
                 copyButton.addEventListener("click", function (event) {
                     event.stopPropagation(); // Prevent triggering box click event
-                    navigator.clipboard.writeText(box.textContent.trim()).then(() => {
-                        copyButton.innerHTML = '<i class="fas fa-clipboard-check"></i>'; // Clipboard checked icon after success
-                        setTimeout(() => {
-                            copyButton.innerHTML = '<i class="fas fa-clipboard"></i>'; // Reset to clipboard icon
-                        }, 2000);
-                    }).catch(() => {
-                        copyButton.innerHTML = '<i class="fas fa-clipboard"></i>'; // Failed copy
-                    });
+                    // Attempt to copy the text of the box to the clipboard
+                    navigator.clipboard.writeText(box.textContent.trim())
+                        .then(() => {
+                            copyButton.innerHTML = '<i class="fas fa-clipboard-check"></i>'; // Clipboard checked icon after success
+                            setTimeout(() => {
+                                copyButton.innerHTML = '<i class="fas fa-clipboard"></i>'; // Reset to clipboard icon
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            copyButton.innerHTML = '<i class="fas fa-clipboard"></i>'; // Reset icon on failure
+                            alert('Failed to copy text');
+                        });
                 });
 
                 // Add copy button to each box
