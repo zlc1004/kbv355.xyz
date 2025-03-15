@@ -78,16 +78,17 @@
             width: 350px;
             height: 200px;
         }
-        .copy-btn {
+        .copy-btn-wrapper {
             position: absolute;
             top: 10px;
             right: 10px;
             font-size: 20px;
-            color: white;
+        }
+        .copy-btn {
             background: transparent;
             border: none;
             cursor: pointer;
-            transition: color 0.3s ease;
+            color: white;
         }
         .copy-btn:hover {
             color: #ff416c;
@@ -99,6 +100,10 @@
 
             document.querySelectorAll(".ui-box").forEach(box => {
                 const text = box.textContent.trim();
+
+                // Create a copy button wrapper
+                const copyBtnWrapper = document.createElement("div");
+                copyBtnWrapper.classList.add("copy-btn-wrapper");
 
                 // Create the clipboard icon (button)
                 const copyButton = document.createElement("button");
@@ -122,12 +127,13 @@
                         });
                 });
 
-                // Add copy button to each box
-                box.appendChild(copyButton);
+                // Append the copy button to the wrapper, and the wrapper to the box
+                copyBtnWrapper.appendChild(copyButton);
+                box.appendChild(copyBtnWrapper);
 
-                // Prevent expansion if clicking on the copy button
+                // Toggle box expansion on click (excluding the copy button)
                 box.addEventListener("click", function (event) {
-                    if (!event.target.classList.contains("copy-btn")) { // Only expand if it's not the copy button
+                    if (!event.target.closest(".copy-btn-wrapper")) { // Only expand if it's not the copy button
                         this.classList.toggle("expanded");
                     }
                 });
