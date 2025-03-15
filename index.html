@@ -125,9 +125,11 @@
                 // Add copy button to each box
                 box.appendChild(copyButton);
 
-                // Toggle box expansion on click
-                box.addEventListener("click", function () {
-                    this.classList.toggle("expanded");
+                // Prevent expansion if clicking on the copy button
+                box.addEventListener("click", function (event) {
+                    if (!event.target.classList.contains("copy-btn")) { // Only expand if it's not the copy button
+                        this.classList.toggle("expanded");
+                    }
                 });
             });
 
